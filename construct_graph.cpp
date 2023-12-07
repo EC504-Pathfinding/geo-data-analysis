@@ -85,6 +85,10 @@ int main() {
             // Skips any invalid entries from the CSV file
             cerr << "Invalid data for city: " << city << ". Skipping." << endl;
         }
+
+        if (cities.size() >= 5) {
+            break; // Exit the loop after the first 5 cities are processed
+        }
     }
 
     file.close();
@@ -102,6 +106,15 @@ int main() {
             }
         }
         graph[city1.name] = cityDistances;
+    }
+
+    // Print the adjacency list for the first 5 cities
+    for (const auto& entry : graph) {
+        cout << entry.first << ": ";
+        for (const auto& neighbor : entry.second) {
+            cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
+        }
+        cout << endl;
     }
 
     return 0;
