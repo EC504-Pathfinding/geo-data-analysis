@@ -69,16 +69,13 @@ void outputGraphToFile(const unordered_map<string, vector<pair<string, double>>>
         return;
     }
 
-    int edgeCount = 0;
-    for (const auto& cityPair : graph) {
-        edgeCount += cityPair.second.size();
-    }
-
-    outputFile << edgeCount << endl;
+    // Output header line
+    outputFile << "From,To,Distance" << endl;
 
     for (const auto& cityPair : graph) {
         for (const auto& connection : cityPair.second) {
-            outputFile << cityPair.first << " " << connection.first << " " << connection.second << endl;
+            // Separate fields with commas
+            outputFile << cityPair.first << "," << connection.first << "," << connection.second << endl;
         }
     }
 
@@ -162,7 +159,7 @@ int main() {
         vector<City> cities = readCitiesFromFile("cities.csv");
         auto graph = createCityGraph(cities);
         // printGraph(graph);
-        // outputGraphToFile(graph, "small_adjacency_list.txt");
+        outputGraphToFile(graph, "small_adjacency_list.csv");
     } catch (const std::exception& e) {
         cerr << "Exception caught in main: " << e.what() << endl;
         return 1;
