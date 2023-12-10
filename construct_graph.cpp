@@ -5,12 +5,14 @@
 #include <vector>
 #include <cmath>
 #include <limits>
+#include <stdlib.h>
 #include <unordered_map>
 
-using namespace std;
+#define EARTH_RADIUS_KM 6371.0      /* Radius of the Earth in Kilometers */
+#define DISTANCE_THRESHOLD_KM 500.0 /* Distance Threshold */
+#define CITY_LIMIT 50
 
-const double EARTH_RADIUS_KM = 6371.0; // Radius of the Earth in kilometers
-const double DISTANCE_THRESHOLD_KM = 500.0; // Distance threshold
+using namespace std;
 
 struct City {
     string name;
@@ -124,8 +126,8 @@ vector<City> readCitiesFromFile(const string& filename) {
             cerr << "Invalid data for city: " << city << ". Skipping." << endl;
         }
 
-        // Use only first 50 cities in CSV for testing
-        if (cities.size() >= 50) {
+        // Use only first CITY_LIMIT cities in CSV for testing
+        if (cities.size() >= CITY_LIMIT) {
             break;
         }
     }
@@ -154,12 +156,88 @@ unordered_map<string, vector<pair<string, double>>> createCityGraph(const vector
     return graph;
 }
 
+unordered_map<string,string> dijkstra(unordered_map<string, vector<pair<string, double>>> graph, string start_city)
+{
+    unordered_map<string,int> dist_vec; /* Keep track of distances */
+ 
+    unordered_map<string,bool> visited; /* Keep track of visited nodes */
+
+    unordered_map<string,string> predecessor_list;
+
+    /* INITIALIZE VALUES */
+    for(auto i = graph.begin(); i != graph.end(); i++) {
+        dist_vec[i->first] = INT_MAX;
+        visited[i->first] = false;
+        predecessor_list[i->first] = "";
+    }
+
+    dist_vec[start_city] = 0;
+    predecessor_list[start_city] = start_city;
+
+    for (int iter = 0; iter < graph.size() - 1; iter++) {
+        /* USE INFO AT HAND TO SELECT MINIMUM WEIGHT ADDITION EDGE */
+        int curr_min = INT_MAX;
+        string min_idx = "";
+        for (auto i = graph.begin(); i != graph.end(); i++) {
+            if(!visited[i->first] && dist_vec[i->first] <= curr_min) {
+                curr_min = dist_vec[i->first];
+                min_idx = i->first;
+            }
+        }
+        visited[min_idx] = true;
+        /* ITERATE THROUGH CONNECTED NODES */
+        for(auto i = graph.begin(); i != graph.end(); i++) {
+            string city_name = i->first;
+            auto city_pair_vec = graph[city_name];
+            double dist_to_main = INT_MAX;
+            bool is_connected = false;
+            for(auto i = city_pair_vec.begin(); i < city_pair_vec.end(); i++) {
+                if(min_idx == i->first) {
+                    dist_to_main = i->second;
+                    is_connected = true;
+                }
+            }
+            if(!visited[city_name] && is_connected && dist_vec[min_idx] + dist_to_main < dist_vec[city_name]) {
+                dist_vec[city_name] = dist_vec[min_idx] + dist_to_main;
+                predecessor_list[city_name] = min_idx;
+            }
+        }
+    }
+    return predecessor_list;
+}
+
+void printPathVector(vector<string> path_vec) {
+    for(int i = 0; i < path_vec.size(); i++) {
+        if(i == path_vec.size() - 1) {
+            cout << path_vec[i] << endl;
+            break;
+        } else
+            cout << path_vec[i] << ", ";
+    }
+    return;
+}
+
+vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city) {
+    unordered_map<string, string> predecessor_list = dijkstra(graph, start_city);
+    vector<string> path_vec; // 0th index is start city, final index is end_city
+    path_vec.push_back(end_city);
+    while(predecessor_list[end_city] != start_city) {
+        path_vec.push_back(predecessor_list[end_city]);
+        end_city = predecessor_list[end_city];
+    }
+    path_vec.push_back(start_city);
+    reverse(path_vec.begin(), path_vec.end());
+    printPathVector(path_vec);
+    return path_vec;
+}
+
 int main() {
     try {
         vector<City> cities = readCitiesFromFile("cities.csv");
         auto graph = createCityGraph(cities);
         // printGraph(graph);
         outputGraphToFile(graph, "small_adjacency_list.csv");
+        dijkstraPathFinding(graph, "Los Angeles", "Phoenix");
     } catch (const std::exception& e) {
         cerr << "Exception caught in main: " << e.what() << endl;
         return 1;
