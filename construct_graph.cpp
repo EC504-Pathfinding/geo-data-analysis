@@ -8,10 +8,11 @@
 #include <stdlib.h>
 #include <unordered_map>
 #include <queue>
+#include <time.h>
 
 #define EARTH_RADIUS_KM 6371.0
-#define DISTANCE_THRESHOLD_KM 500.0
-#define CITY_LIMIT 1000
+#define DISTANCE_THRESHOLD_KM 100.0
+#define CITY_LIMIT 100000
 
 using namespace std;
 
@@ -331,8 +332,18 @@ int main() {
 
         try {
             cout << "Calculating path..." << endl;
+            clock_t start, end;
+            double cpu_time_dijkstra, cpu_time_astar;
+            start = clock();
             dijkstraPathFinding(graph, startCity, endCity);
+            end = clock();
+            cpu_time_dijkstra = ((double) (end - start)) / CLOCKS_PER_SEC;
+            start = clock();
             AStarPathFinding(graph, startCity, endCity, cities);
+            end = clock();
+            cpu_time_astar = ((double) (end - start)) / CLOCKS_PER_SEC;
+            cout << endl << "Dijkstra took " << cpu_time_dijkstra << " seconds" << endl;
+            cout << "A* took " << cpu_time_astar << " seconds" << endl;
         } catch (exception& e) {
             cout << "Error finding path: " << e.what() << endl;
         }
