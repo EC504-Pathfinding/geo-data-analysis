@@ -16,8 +16,9 @@ using namespace std;
 
 struct City {
     string name;
+    string state;
     double lat;
-    double lng;
+    double lng;    
 };
 
 string removeQuotesAndTrim(const string& input) {
@@ -120,7 +121,7 @@ vector<City> readCitiesFromFile(const string& filename) {
         }
 
         try {
-            City newCity = {city, stod(lat), stod(lng)};
+            City newCity = {city, state, stod(lat), stod(lng)};
             cities.push_back(newCity);
         } catch (const std::invalid_argument& e) {
             cerr << "Invalid data for city: " << city << ". Skipping." << endl;
@@ -174,7 +175,7 @@ unordered_map<string,string> dijkstra(unordered_map<string, vector<pair<string, 
     dist_vec[start_city] = 0;
     predecessor_list[start_city] = start_city;
 
-    for (int iter = 0; iter < graph.size() - 1; iter++) {
+    for (unsigned int iter = 0; iter < graph.size() - 1; iter++) {
         /* USE INFO AT HAND TO SELECT MINIMUM WEIGHT ADDITION EDGE */
         int curr_min = INT_MAX;
         string min_idx = "";
@@ -207,7 +208,7 @@ unordered_map<string,string> dijkstra(unordered_map<string, vector<pair<string, 
 }
 
 void printPathVector(vector<string> path_vec) {
-    for(int i = 0; i < path_vec.size(); i++) {
+    for(unsigned int i = 0; i < path_vec.size(); i++) {
         if(i == path_vec.size() - 1) {
             cout << path_vec[i] << endl;
             break;
@@ -218,6 +219,7 @@ void printPathVector(vector<string> path_vec) {
 }
 
 vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city) {
+    cout << "Running Dijkstra's..." << endl;
     unordered_map<string, string> predecessor_list = dijkstra(graph, start_city);
     vector<string> path_vec; // 0th index is start city, final index is end_city
     path_vec.push_back(end_city);
@@ -236,7 +238,7 @@ int main() {
         vector<City> cities = readCitiesFromFile("cities.csv");
         auto graph = createCityGraph(cities);
         // printGraph(graph);
-        outputGraphToFile(graph, "small_adjacency_list.csv");
+        // outputGraphToFile(graph, "small_adjacency_list.csv");
         dijkstraPathFinding(graph, "Los Angeles", "Phoenix");
     } catch (const std::exception& e) {
         cerr << "Exception caught in main: " << e.what() << endl;
