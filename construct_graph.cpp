@@ -242,6 +242,7 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
 int main() {
     vector<City> cities = readCitiesFromFile("cities.csv");
     auto graph = createCityGraph(cities);
+    outputGraphToFile(graph, "small_adjacency_list.csv");
 
     string startCity, endCity;
 
