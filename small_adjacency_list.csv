@@ -1,273 +1,273 @@
 From,To,Distance
-Raleigh,Washington,370.626
-Raleigh,Baltimore,425.505
-Raleigh,Charlotte,209.743
-Raleigh,Virginia Beach,253.66
-Raleigh,Richmond,215.526
-St. Louis,Chicago,416.975
-St. Louis,Cincinnati,499.798
-St. Louis,Kansas City,376.883
-St. Louis,Indianapolis,375.266
-St. Louis,Nashville,410.469
-St. Louis,Memphis,393.373
-St. Louis,Louisville,403.898
-Virginia Beach,New York,477.198
-Virginia Beach,Philadelphia,372.603
-Virginia Beach,Washington,256.097
-Virginia Beach,Brooklyn,471.86
-Virginia Beach,Queens,487.174
-Virginia Beach,Baltimore,290.287
-Virginia Beach,Manhattan,484.972
-Virginia Beach,Charlotte,462.906
-Virginia Beach,Bronx,495.068
-Virginia Beach,Richmond,154.761
-Virginia Beach,Raleigh,253.66
-Richmond,New York,466.482
-Richmond,Philadelphia,342.243
-Richmond,Washington,158.092
-Richmond,Brooklyn,461.444
-Richmond,Queens,478.276
-Richmond,Baltimore,211.21
-Richmond,Pittsburgh,389.09
-Richmond,Manhattan,471.581
-Richmond,Charlotte,396.005
-Richmond,Virginia Beach,154.761
-Richmond,Bronx,482.703
-Richmond,Raleigh,215.526
-Jacksonville,Atlanta,460.994
-Jacksonville,Tampa,270.514
-Jacksonville,Orlando,208.849
-Louisville,Chicago,443.527
-Louisville,St. Louis,403.898
-Louisville,Cincinnati,146.949
-Louisville,Indianapolis,184.199
-Louisville,Columbus,306.261
-Louisville,Nashville,243.569
-Memphis,St. Louis,393.373
-Memphis,Nashville,311.965
-Bronx,New York,18.0156
-Bronx,Philadelphia,142.432
-Bronx,Washington,344.996
-Bronx,Boston,283.159
-Bronx,Brooklyn,23.3223
-Bronx,Queens,12.559
-Bronx,Baltimore,290.127
-Bronx,Manhattan,11.2171
-Bronx,Virginia Beach,495.068
-Bronx,Providence,231.198
-Bronx,Richmond,482.703
-Indianapolis,Chicago,263.214
-Indianapolis,Detroit,386.026
-Indianapolis,St. Louis,375.266
-Indianapolis,Cleveland,421.506
-Indianapolis,Cincinnati,157.522
-Indianapolis,Columbus,270.69
-Indianapolis,Milwaukee,395.781
-Indianapolis,Nashville,404.808
-Indianapolis,Louisville,184.199
-Manhattan,New York,10.5007
-Manhattan,Philadelphia,131.216
-Manhattan,Washington,333.801
-Manhattan,Boston,294.331
-Manhattan,Brooklyn,14.8882
-Manhattan,Queens,14.6822
-Manhattan,Baltimore,278.973
-Manhattan,Virginia Beach,484.972
-Manhattan,Bronx,11.2171
-Manhattan,Providence,242.155
-Manhattan,Richmond,471.581
-Kansas City,St. Louis,376.883
-Pittsburgh,Philadelphia,413.856
-Pittsburgh,Washington,305.432
-Pittsburgh,Detroit,338.608
-Pittsburgh,Baltimore,313.375
-Pittsburgh,Cleveland,183.782
-Pittsburgh,Cincinnati,413.024
-Pittsburgh,Columbus,260.402
-Pittsburgh,Richmond,389.09
-Cleveland,Washington,488.498
-Cleveland,Detroit,154.924
-Cleveland,Baltimore,492.205
-Cleveland,Pittsburgh,183.782
-Cleveland,Cincinnati,353.291
-Cleveland,Indianapolis,421.506
-Cleveland,Columbus,198.872
-Brooklyn,New York,5.33804
-Brooklyn,Philadelphia,123.209
-Brooklyn,Washington,326.076
-Brooklyn,Boston,302.269
-Brooklyn,Queens,16.9438
-Brooklyn,Baltimore,271.871
-Brooklyn,Manhattan,14.8882
-Brooklyn,Virginia Beach,471.86
-Brooklyn,Bronx,23.3223
-Brooklyn,Providence,248.572
-Brooklyn,Richmond,461.444
-Providence,New York,244.195
-Providence,Philadelphia,371.697
-Providence,Boston,61.6429
-Providence,Brooklyn,248.572
-Providence,Queens,231.825
-Providence,Manhattan,242.155
-Providence,Bronx,231.198
-Orlando,Miami,319.557
-Orlando,Tampa,121.121
-Orlando,Jacksonville,208.849
-San Jose,Los Angeles,471.341
-San Jose,San Francisco,72.7957
-San Jose,Sacramento,144.54
-San Antonio,Dallas,406.132
-San Antonio,Houston,305.237
-San Antonio,Austin,119.028
-Baltimore,New York,276.285
-Baltimore,Philadelphia,148.883
-Baltimore,Washington,56.4343
-Baltimore,Brooklyn,271.871
-Baltimore,Queens,288.643
-Baltimore,Cleveland,492.205
-Baltimore,Pittsburgh,313.375
-Baltimore,Manhattan,278.973
-Baltimore,Virginia Beach,290.287
-Baltimore,Bronx,290.127
-Baltimore,Richmond,211.21
-Baltimore,Raleigh,425.505
-New York,Philadelphia,127.768
-New York,Washington,330.639
-New York,Boston,297.577
-New York,Brooklyn,5.33804
-New York,Queens,12.3763
-New York,Baltimore,276.285
-New York,Manhattan,10.5007
-New York,Virginia Beach,477.198
-New York,Bronx,18.0156
-New York,Providence,244.195
-New York,Richmond,466.482
-Las Vegas,Los Angeles,370.182
-Las Vegas,Phoenix,414.023
-Las Vegas,San Diego,414.76
-Las Vegas,Riverside,320.408
-San Diego,Los Angeles,185.828
-San Diego,Phoenix,475.46
-San Diego,Riverside,125.651
-San Diego,Las Vegas,414.76
-Charlotte,Atlanta,366.321
-Charlotte,Virginia Beach,462.906
-Charlotte,Richmond,396.005
-Charlotte,Raleigh,209.743
-Houston,Dallas,359.083
-Houston,San Antonio,305.237
-Houston,Austin,234.548
-Atlanta,Charlotte,366.321
-Atlanta,Jacksonville,460.994
-Atlanta,Nashville,343.574
-Dallas,Houston,359.083
-Dallas,San Antonio,406.132
-Dallas,Austin,292.548
-Tampa,Miami,330.935
-Tampa,Orlando,121.121
-Tampa,Jacksonville,270.514
-Portland,Seattle,233.051
-Austin,Dallas,292.548
-Austin,Houston,234.548
-Austin,San Antonio,119.028
-Washington,New York,330.639
-Washington,Philadelphia,202.874
-Washington,Brooklyn,326.076
-Washington,Queens,342.949
-Washington,Baltimore,56.4343
-Washington,Cleveland,488.498
-Washington,Pittsburgh,305.432
-Washington,Manhattan,333.801
-Washington,Virginia Beach,256.097
-Washington,Bronx,344.996
-Washington,Richmond,158.092
-Washington,Raleigh,370.626
-Detroit,Chicago,382.915
-Detroit,Cleveland,154.924
-Detroit,Pittsburgh,338.608
-Detroit,Cincinnati,379.378
-Detroit,Indianapolis,386.026
-Detroit,Columbus,266.737
-Detroit,Milwaukee,404.485
-Chicago,Detroit,382.915
-Chicago,St. Louis,416.975
-Chicago,Cincinnati,402.669
-Chicago,Indianapolis,263.214
-Chicago,Columbus,445.367
-Chicago,Milwaukee,138.361
-Chicago,Louisville,443.527
-Phoenix,San Diego,475.46
-Phoenix,Riverside,492.139
-Phoenix,Las Vegas,414.023
-San Francisco,Sacramento,124.032
-San Francisco,San Jose,72.7957
-Boston,New York,297.577
-Boston,Philadelphia,425.29
-Boston,Brooklyn,302.269
-Boston,Queens,285.337
-Boston,Manhattan,294.331
-Boston,Bronx,283.159
-Boston,Providence,61.6429
-Queens,New York,12.3763
-Queens,Philadelphia,140.075
-Queens,Washington,342.949
-Queens,Boston,285.337
-Queens,Brooklyn,16.9438
-Queens,Baltimore,288.643
-Queens,Manhattan,14.6822
-Queens,Virginia Beach,487.174
-Queens,Bronx,12.559
-Queens,Providence,231.825
-Queens,Richmond,478.276
-Cincinnati,Chicago,402.669
-Cincinnati,Detroit,379.378
-Cincinnati,St. Louis,499.798
-Cincinnati,Cleveland,353.291
-Cincinnati,Pittsburgh,413.024
-Cincinnati,Indianapolis,157.522
-Cincinnati,Columbus,160.708
-Cincinnati,Nashville,386.322
-Cincinnati,Louisville,146.949
-Philadelphia,New York,127.768
-Philadelphia,Washington,202.874
-Philadelphia,Boston,425.29
-Philadelphia,Brooklyn,123.209
-Philadelphia,Queens,140.075
-Philadelphia,Baltimore,148.883
-Philadelphia,Pittsburgh,413.856
-Philadelphia,Manhattan,131.216
-Philadelphia,Virginia Beach,372.603
-Philadelphia,Bronx,142.432
-Philadelphia,Providence,371.697
-Philadelphia,Richmond,342.243
-Riverside,Los Angeles,95.2886
-Riverside,Phoenix,492.139
-Riverside,San Diego,125.651
-Riverside,Las Vegas,320.408
-Milwaukee,Chicago,138.361
-Milwaukee,Detroit,404.485
-Milwaukee,Minneapolis,473.44
-Milwaukee,Indianapolis,395.781
-Columbus,Chicago,445.367
-Columbus,Detroit,266.737
-Columbus,Cleveland,198.872
-Columbus,Pittsburgh,260.402
-Columbus,Cincinnati,160.708
-Columbus,Indianapolis,270.69
-Columbus,Louisville,306.261
-Minneapolis,Milwaukee,473.44
-Seattle,Portland,233.051
-Nashville,Atlanta,343.574
-Nashville,St. Louis,410.469
-Nashville,Cincinnati,386.322
-Nashville,Indianapolis,404.808
-Nashville,Memphis,311.965
-Nashville,Louisville,243.569
-Los Angeles,San Diego,185.828
-Los Angeles,Riverside,95.2886
-Los Angeles,Las Vegas,370.182
-Los Angeles,San Jose,471.341
-Sacramento,San Francisco,124.032
-Sacramento,San Jose,144.54
-Miami,Tampa,330.935
-Miami,Orlando,319.557
+Louisville KY,Chicago IL,443.527
+Louisville KY,St. Louis MO,403.898
+Louisville KY,Cincinnati OH,146.949
+Louisville KY,Indianapolis IN,184.199
+Louisville KY,Columbus OH,306.261
+Louisville KY,Nashville TN,243.569
+Raleigh NC,Washington DC,370.626
+Raleigh NC,Baltimore MD,425.505
+Raleigh NC,Charlotte NC,209.743
+Raleigh NC,Virginia Beach VA,253.66
+Raleigh NC,Richmond VA,215.526
+Memphis TN,St. Louis MO,393.373
+Memphis TN,Nashville TN,311.965
+Riverside CA,Los Angeles CA,95.2886
+Riverside CA,Phoenix AZ,492.139
+Riverside CA,San Diego CA,125.651
+Riverside CA,Las Vegas NV,320.408
+Richmond VA,New York NY,466.482
+Richmond VA,Philadelphia PA,342.243
+Richmond VA,Washington DC,158.092
+Richmond VA,Brooklyn NY,461.444
+Richmond VA,Queens NY,478.276
+Richmond VA,Baltimore MD,211.21
+Richmond VA,Pittsburgh PA,389.09
+Richmond VA,Manhattan NY,471.581
+Richmond VA,Charlotte NC,396.005
+Richmond VA,Virginia Beach VA,154.761
+Richmond VA,Bronx NY,482.703
+Richmond VA,Raleigh NC,215.526
+San Francisco CA,Sacramento CA,124.032
+San Francisco CA,San Jose CA,72.7957
+Jacksonville FL,Atlanta GA,460.994
+Jacksonville FL,Tampa FL,270.514
+Jacksonville FL,Orlando FL,208.849
+Providence RI,New York NY,244.195
+Providence RI,Philadelphia PA,371.697
+Providence RI,Boston MA,61.6429
+Providence RI,Brooklyn NY,248.572
+Providence RI,Queens NY,231.825
+Providence RI,Manhattan NY,242.155
+Providence RI,Bronx NY,231.198
+Virginia Beach VA,New York NY,477.198
+Virginia Beach VA,Philadelphia PA,372.603
+Virginia Beach VA,Washington DC,256.097
+Virginia Beach VA,Brooklyn NY,471.86
+Virginia Beach VA,Queens NY,487.174
+Virginia Beach VA,Baltimore MD,290.287
+Virginia Beach VA,Manhattan NY,484.972
+Virginia Beach VA,Charlotte NC,462.906
+Virginia Beach VA,Bronx NY,495.068
+Virginia Beach VA,Richmond VA,154.761
+Virginia Beach VA,Raleigh NC,253.66
+San Jose CA,Los Angeles CA,471.341
+San Jose CA,San Francisco CA,72.7957
+San Jose CA,Sacramento CA,144.54
+Charlotte NC,Atlanta GA,366.321
+Charlotte NC,Virginia Beach VA,462.906
+Charlotte NC,Richmond VA,396.005
+Charlotte NC,Raleigh NC,209.743
+Indianapolis IN,Chicago IL,263.214
+Indianapolis IN,Detroit MI,386.026
+Indianapolis IN,St. Louis MO,375.266
+Indianapolis IN,Cleveland OH,421.506
+Indianapolis IN,Cincinnati OH,157.522
+Indianapolis IN,Columbus OH,270.69
+Indianapolis IN,Milwaukee WI,395.781
+Indianapolis IN,Nashville TN,404.808
+Indianapolis IN,Louisville KY,184.199
+Cincinnati OH,Chicago IL,402.669
+Cincinnati OH,Detroit MI,379.378
+Cincinnati OH,St. Louis MO,499.798
+Cincinnati OH,Cleveland OH,353.291
+Cincinnati OH,Pittsburgh PA,413.024
+Cincinnati OH,Indianapolis IN,157.522
+Cincinnati OH,Columbus OH,160.708
+Cincinnati OH,Nashville TN,386.322
+Cincinnati OH,Louisville KY,146.949
+Pittsburgh PA,Philadelphia PA,413.856
+Pittsburgh PA,Washington DC,305.432
+Pittsburgh PA,Detroit MI,338.608
+Pittsburgh PA,Baltimore MD,313.375
+Pittsburgh PA,Cleveland OH,183.782
+Pittsburgh PA,Cincinnati OH,413.024
+Pittsburgh PA,Columbus OH,260.402
+Pittsburgh PA,Richmond VA,389.09
+St. Louis MO,Chicago IL,416.975
+St. Louis MO,Cincinnati OH,499.798
+St. Louis MO,Kansas City MO,376.883
+St. Louis MO,Indianapolis IN,375.266
+St. Louis MO,Nashville TN,410.469
+St. Louis MO,Memphis TN,393.373
+St. Louis MO,Louisville KY,403.898
+San Antonio TX,Dallas TX,406.132
+San Antonio TX,Houston TX,305.237
+San Antonio TX,Austin TX,119.028
+Bronx NY,New York NY,18.0156
+Bronx NY,Philadelphia PA,142.432
+Bronx NY,Washington DC,344.996
+Bronx NY,Boston MA,283.159
+Bronx NY,Brooklyn NY,23.3223
+Bronx NY,Queens NY,12.559
+Bronx NY,Baltimore MD,290.127
+Bronx NY,Manhattan NY,11.2171
+Bronx NY,Virginia Beach VA,495.068
+Bronx NY,Providence RI,231.198
+Bronx NY,Richmond VA,482.703
+Detroit MI,Chicago IL,382.915
+Detroit MI,Cleveland OH,154.924
+Detroit MI,Pittsburgh PA,338.608
+Detroit MI,Cincinnati OH,379.378
+Detroit MI,Indianapolis IN,386.026
+Detroit MI,Columbus OH,266.737
+Detroit MI,Milwaukee WI,404.485
+Portland OR,Seattle WA,233.051
+Las Vegas NV,Los Angeles CA,370.182
+Las Vegas NV,Phoenix AZ,414.023
+Las Vegas NV,San Diego CA,414.76
+Las Vegas NV,Riverside CA,320.408
+Philadelphia PA,New York NY,127.768
+Philadelphia PA,Washington DC,202.874
+Philadelphia PA,Boston MA,425.29
+Philadelphia PA,Brooklyn NY,123.209
+Philadelphia PA,Queens NY,140.075
+Philadelphia PA,Baltimore MD,148.883
+Philadelphia PA,Pittsburgh PA,413.856
+Philadelphia PA,Manhattan NY,131.216
+Philadelphia PA,Virginia Beach VA,372.603
+Philadelphia PA,Bronx NY,142.432
+Philadelphia PA,Providence RI,371.697
+Philadelphia PA,Richmond VA,342.243
+Dallas TX,Houston TX,359.083
+Dallas TX,San Antonio TX,406.132
+Dallas TX,Austin TX,292.548
+Cleveland OH,Washington DC,488.498
+Cleveland OH,Detroit MI,154.924
+Cleveland OH,Baltimore MD,492.205
+Cleveland OH,Pittsburgh PA,183.782
+Cleveland OH,Cincinnati OH,353.291
+Cleveland OH,Indianapolis IN,421.506
+Cleveland OH,Columbus OH,198.872
+Houston TX,Dallas TX,359.083
+Houston TX,San Antonio TX,305.237
+Houston TX,Austin TX,234.548
+Columbus OH,Chicago IL,445.367
+Columbus OH,Detroit MI,266.737
+Columbus OH,Cleveland OH,198.872
+Columbus OH,Pittsburgh PA,260.402
+Columbus OH,Cincinnati OH,160.708
+Columbus OH,Indianapolis IN,270.69
+Columbus OH,Louisville KY,306.261
+Queens NY,New York NY,12.3763
+Queens NY,Philadelphia PA,140.075
+Queens NY,Washington DC,342.949
+Queens NY,Boston MA,285.337
+Queens NY,Brooklyn NY,16.9438
+Queens NY,Baltimore MD,288.643
+Queens NY,Manhattan NY,14.6822
+Queens NY,Virginia Beach VA,487.174
+Queens NY,Bronx NY,12.559
+Queens NY,Providence RI,231.825
+Queens NY,Richmond VA,478.276
+Nashville TN,Atlanta GA,343.574
+Nashville TN,St. Louis MO,410.469
+Nashville TN,Cincinnati OH,386.322
+Nashville TN,Indianapolis IN,404.808
+Nashville TN,Memphis TN,311.965
+Nashville TN,Louisville KY,243.569
+Chicago IL,Detroit MI,382.915
+Chicago IL,St. Louis MO,416.975
+Chicago IL,Cincinnati OH,402.669
+Chicago IL,Indianapolis IN,263.214
+Chicago IL,Columbus OH,445.367
+Chicago IL,Milwaukee WI,138.361
+Chicago IL,Louisville KY,443.527
+Tampa FL,Miami FL,330.935
+Tampa FL,Orlando FL,121.121
+Tampa FL,Jacksonville FL,270.514
+Seattle WA,Portland OR,233.051
+San Diego CA,Los Angeles CA,185.828
+San Diego CA,Phoenix AZ,475.46
+San Diego CA,Riverside CA,125.651
+San Diego CA,Las Vegas NV,414.76
+Kansas City MO,St. Louis MO,376.883
+Austin TX,Dallas TX,292.548
+Austin TX,Houston TX,234.548
+Austin TX,San Antonio TX,119.028
+Sacramento CA,San Francisco CA,124.032
+Sacramento CA,San Jose CA,144.54
+Baltimore MD,New York NY,276.285
+Baltimore MD,Philadelphia PA,148.883
+Baltimore MD,Washington DC,56.4343
+Baltimore MD,Brooklyn NY,271.871
+Baltimore MD,Queens NY,288.643
+Baltimore MD,Cleveland OH,492.205
+Baltimore MD,Pittsburgh PA,313.375
+Baltimore MD,Manhattan NY,278.973
+Baltimore MD,Virginia Beach VA,290.287
+Baltimore MD,Bronx NY,290.127
+Baltimore MD,Richmond VA,211.21
+Baltimore MD,Raleigh NC,425.505
+Milwaukee WI,Chicago IL,138.361
+Milwaukee WI,Detroit MI,404.485
+Milwaukee WI,Minneapolis MN,473.44
+Milwaukee WI,Indianapolis IN,395.781
+Boston MA,New York NY,297.577
+Boston MA,Philadelphia PA,425.29
+Boston MA,Brooklyn NY,302.269
+Boston MA,Queens NY,285.337
+Boston MA,Manhattan NY,294.331
+Boston MA,Bronx NY,283.159
+Boston MA,Providence RI,61.6429
+Manhattan NY,New York NY,10.5007
+Manhattan NY,Philadelphia PA,131.216
+Manhattan NY,Washington DC,333.801
+Manhattan NY,Boston MA,294.331
+Manhattan NY,Brooklyn NY,14.8882
+Manhattan NY,Queens NY,14.6822
+Manhattan NY,Baltimore MD,278.973
+Manhattan NY,Virginia Beach VA,484.972
+Manhattan NY,Bronx NY,11.2171
+Manhattan NY,Providence RI,242.155
+Manhattan NY,Richmond VA,471.581
+Atlanta GA,Charlotte NC,366.321
+Atlanta GA,Jacksonville FL,460.994
+Atlanta GA,Nashville TN,343.574
+Orlando FL,Miami FL,319.557
+Orlando FL,Tampa FL,121.121
+Orlando FL,Jacksonville FL,208.849
+Minneapolis MN,Milwaukee WI,473.44
+Phoenix AZ,San Diego CA,475.46
+Phoenix AZ,Riverside CA,492.139
+Phoenix AZ,Las Vegas NV,414.023
+Brooklyn NY,New York NY,5.33804
+Brooklyn NY,Philadelphia PA,123.209
+Brooklyn NY,Washington DC,326.076
+Brooklyn NY,Boston MA,302.269
+Brooklyn NY,Queens NY,16.9438
+Brooklyn NY,Baltimore MD,271.871
+Brooklyn NY,Manhattan NY,14.8882
+Brooklyn NY,Virginia Beach VA,471.86
+Brooklyn NY,Bronx NY,23.3223
+Brooklyn NY,Providence RI,248.572
+Brooklyn NY,Richmond VA,461.444
+Washington DC,New York NY,330.639
+Washington DC,Philadelphia PA,202.874
+Washington DC,Brooklyn NY,326.076
+Washington DC,Queens NY,342.949
+Washington DC,Baltimore MD,56.4343
+Washington DC,Cleveland OH,488.498
+Washington DC,Pittsburgh PA,305.432
+Washington DC,Manhattan NY,333.801
+Washington DC,Virginia Beach VA,256.097
+Washington DC,Bronx NY,344.996
+Washington DC,Richmond VA,158.092
+Washington DC,Raleigh NC,370.626
+Miami FL,Tampa FL,330.935
+Miami FL,Orlando FL,319.557
+Los Angeles CA,San Diego CA,185.828
+Los Angeles CA,Riverside CA,95.2886
+Los Angeles CA,Las Vegas NV,370.182
+Los Angeles CA,San Jose CA,471.341
+New York NY,Philadelphia PA,127.768
+New York NY,Washington DC,330.639
+New York NY,Boston MA,297.577
+New York NY,Brooklyn NY,5.33804
+New York NY,Queens NY,12.3763
+New York NY,Baltimore MD,276.285
+New York NY,Manhattan NY,10.5007
+New York NY,Virginia Beach VA,477.198
+New York NY,Bronx NY,18.0156
+New York NY,Providence RI,244.195
+New York NY,Richmond VA,466.482

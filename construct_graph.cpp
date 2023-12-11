@@ -77,8 +77,11 @@ void outputGraphToFile(const unordered_map<string, vector<pair<string, double>>>
 
     for (const auto& cityPair : graph) {
         for (const auto& connection : cityPair.second) {
-            // Separate fields with commas
-            outputFile << cityPair.first << "," << connection.first << "," << connection.second << endl;
+            
+            // Use concatenated city names
+            outputFile << cityPair.first << "," 
+                       << connection.first << ","  
+                       << connection.second << endl;
         }
     }
 
@@ -137,21 +140,28 @@ vector<City> readCitiesFromFile(const string& filename) {
     return cities;
 }
 
+string getCityState(const City& city) {
+    return city.name + " " + city.state;
+}
+
 unordered_map<string, vector<pair<string, double>>> createCityGraph(const vector<City>& cities) {
     unordered_map<string, vector<pair<string, double>>> graph;
 
-    cout << "Calculating distances..." << endl;
     for (const auto& city1 : cities) {
         vector<pair<string, double>> cityDistances;
         for (const auto& city2 : cities) {
             if (city1.name != city2.name) {
                 double distance = calculateDistance(city1.lat, city1.lng, city2.lat, city2.lng);
-                if (distance <= DISTANCE_THRESHOLD_KM) {
-                    cityDistances.push_back(make_pair(city2.name, distance));
+                if (distance <= DISTANCE_THRESHOLD_KM) {  
+                    string city1Name = getCityState(city1); 
+                    string city2Name = getCityState(city2);
+                    
+                    cityDistances.push_back(make_pair(city2Name, distance));
                 }
             }
         }
-        graph[city1.name] = cityDistances;
+        // Use concatenated name for graph key
+        graph[getCityState(city1)] = cityDistances; 
     }
 
     return graph;
@@ -239,7 +249,7 @@ int main() {
         auto graph = createCityGraph(cities);
         // printGraph(graph);
         // outputGraphToFile(graph, "small_adjacency_list.csv");
-        dijkstraPathFinding(graph, "Los Angeles", "Phoenix");
+        dijkstraPathFinding(graph, "Los Angeles CA", "Phoenix AZ");
     } catch (const std::exception& e) {
         cerr << "Exception caught in main: " << e.what() << endl;
         return 1;
