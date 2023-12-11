@@ -11,7 +11,7 @@
 
 #define EARTH_RADIUS_KM 6371.0
 #define DISTANCE_THRESHOLD_KM 500.0
-#define CITY_LIMIT 500
+#define CITY_LIMIT 1000
 
 using namespace std;
 
@@ -247,14 +247,15 @@ int main() {
     string startCity, endCity;
 
     while (true) {
-        cout << "Enter start city (or QUIT to exit): ";
+        cout << "Enter start city (e.g. New York NY) (or QUIT to exit): ";
         getline(cin, startCity);
         if (startCity == "QUIT") break;
 
-        cout << "Enter end city: "; 
+        cout << "Enter end city (e.g. Los Angeles CA): "; 
         getline(cin, endCity);
 
         try {
+            cout << "Calculating path..." << endl;
             dijkstraPathFinding(graph, startCity, endCity);
         } catch (exception& e) {
             cout << "Error finding path: " << e.what() << endl;
