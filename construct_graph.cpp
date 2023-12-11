@@ -234,6 +234,81 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
+    cout << "Dijkstra's path:" << endl;
+    printPathVector(path_vec);
+    return path_vec;
+}
+
+struct compare {
+    bool operator()(const pair<string, double>& l, const pair<string, double>& r) {
+        return l.second > r.second;
+    }
+};
+
+unordered_map<string, string> AStar(
+    unordered_map<string, vector<pair<string, double>>> graph,
+    string start_city, string end_city, unordered_map<string, City> city_map) {
+
+    priority_queue<pair<string, double>, vector<pair<string, double>>, compare> Q;
+    unordered_map<string, bool> closed;
+    unordered_map<string, double> dist_vec;
+    unordered_map<string, string> predecessor_list;
+
+    for (const auto& pair : graph) {
+        dist_vec[pair.first] = INT_MAX;
+        predecessor_list[pair.first] = "";
+        closed[pair.first] = false;
+    }
+
+    dist_vec[start_city] = 0;
+    predecessor_list[start_city] = start_city;
+    Q.push({start_city, 0.0});
+
+    while (!Q.empty()) {
+        string current = Q.top().first;
+        Q.pop();
+        closed[current] = true;
+
+        if (current == end_city) break;
+
+        for (const auto& neighbor : graph[current]) {
+            if (closed[neighbor.first]) continue;
+
+            double newDist = dist_vec[current] + neighbor.second;
+            if (newDist < dist_vec[neighbor.first]) {
+                dist_vec[neighbor.first] = newDist;
+                predecessor_list[neighbor.first] = current;
+                double heuristic = calculateDistance(city_map[neighbor.first].lat, city_map[end_city].lat, city_map[neighbor.first].lng, city_map[end_city].lng);
+                Q.push({neighbor.first, newDist + heuristic});
+            }
+        }
+    }
+
+    return predecessor_list;
+}
+
+
+unordered_map<string, City> map_cities(vector<City> cities){
+    unordered_map<string, City> city_map;
+    for(auto i = cities.begin(); i != cities.end(); i++){
+        city_map[i->name] = *i;
+    }
+    return city_map;
+}
+
+vector<string> AStarPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city, vector<City> cities) {
+    cout << "Running A*..." << endl;
+    unordered_map<string, City> city_map = map_cities(cities);
+    unordered_map<string, string> predecessor_list = AStar(graph, start_city, end_city, city_map);
+    vector<string> path_vec; // 0th index is start city, final index is end_city
+    path_vec.push_back(end_city);
+    while(predecessor_list[end_city] != start_city) {
+        path_vec.push_back(predecessor_list[end_city]);
+        end_city = predecessor_list[end_city];
+    }
+    path_vec.push_back(start_city);
+    reverse(path_vec.begin(), path_vec.end());
+    cout << "A* path:" << endl;
     printPathVector(path_vec);
     return path_vec;
 }
@@ -242,7 +317,7 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
 int main() {
     vector<City> cities = readCitiesFromFile("cities.csv");
     auto graph = createCityGraph(cities);
-    outputGraphToFile(graph, "small_adjacency_list.csv");
+    // outputGraphToFile(graph, "small_adjacency_list.csv");
 
     string startCity, endCity;
 
@@ -257,6 +332,7 @@ int main() {
         try {
             cout << "Calculating path..." << endl;
             dijkstraPathFinding(graph, startCity, endCity);
+            AStarPathFinding(graph, startCity, endCity, cities);
         } catch (exception& e) {
             cout << "Error finding path: " << e.what() << endl;
         }
