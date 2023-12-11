@@ -7,10 +7,11 @@
 #include <limits>
 #include <stdlib.h>
 #include <unordered_map>
+#include <queue>
 
-#define EARTH_RADIUS_KM 6371.0      /* Radius of the Earth in Kilometers */
-#define DISTANCE_THRESHOLD_KM 500.0 /* Distance Threshold */
-#define CITY_LIMIT 50
+#define EARTH_RADIUS_KM 6371.0
+#define DISTANCE_THRESHOLD_KM 500.0
+#define CITY_LIMIT 1000
 
 using namespace std;
 
@@ -167,55 +168,49 @@ unordered_map<string, vector<pair<string, double>>> createCityGraph(const vector
     return graph;
 }
 
-unordered_map<string,string> dijkstra(unordered_map<string, vector<pair<string, double>>> graph, string start_city)
-{
-    unordered_map<string,int> dist_vec; /* Keep track of distances */
- 
-    unordered_map<string,bool> visited; /* Keep track of visited nodes */
+unordered_map<string, string> dijkstra(unordered_map<string, vector<pair<string, double>>>& graph, string start_city) {
+    unordered_map<string, string> predecessor_list;
+    priority_queue<pair<double, string>, vector<pair<double, string>>, greater<pair<double, string>>> minHeap;
 
-    unordered_map<string,string> predecessor_list;
+    // Keep track of distances from the start city to each city in the graph
+    unordered_map<string, double> dist_vec;
 
-    /* INITIALIZE VALUES */
-    for(auto i = graph.begin(); i != graph.end(); i++) {
-        dist_vec[i->first] = INT_MAX;
-        visited[i->first] = false;
-        predecessor_list[i->first] = "";
+    // Initialize distances to infinity for all cities except the start city
+    for (const auto& entry : graph) {
+        dist_vec[entry.first] = numeric_limits<double>::max();
     }
 
+    // Distance from start_city to itself is 0
     dist_vec[start_city] = 0;
-    predecessor_list[start_city] = start_city;
+    minHeap.push({0, start_city});
 
-    for (unsigned int iter = 0; iter < graph.size() - 1; iter++) {
-        /* USE INFO AT HAND TO SELECT MINIMUM WEIGHT ADDITION EDGE */
-        int curr_min = INT_MAX;
-        string min_idx = "";
-        for (auto i = graph.begin(); i != graph.end(); i++) {
-            if(!visited[i->first] && dist_vec[i->first] <= curr_min) {
-                curr_min = dist_vec[i->first];
-                min_idx = i->first;
-            }
-        }
-        visited[min_idx] = true;
-        /* ITERATE THROUGH CONNECTED NODES */
-        for(auto i = graph.begin(); i != graph.end(); i++) {
-            string city_name = i->first;
-            auto city_pair_vec = graph[city_name];
-            double dist_to_main = INT_MAX;
-            bool is_connected = false;
-            for(auto i = city_pair_vec.begin(); i < city_pair_vec.end(); i++) {
-                if(min_idx == i->first) {
-                    dist_to_main = i->second;
-                    is_connected = true;
-                }
-            }
-            if(!visited[city_name] && is_connected && dist_vec[min_idx] + dist_to_main < dist_vec[city_name]) {
-                dist_vec[city_name] = dist_vec[min_idx] + dist_to_main;
-                predecessor_list[city_name] = min_idx;
+    // Main Dijkstra's algorithm loop:
+    // - Get the city with the minimum distance from the priority queue
+    // - Iterate through neighbors (connected cities) of the current city
+    // - If a shorter path to the neighbor through the current city is found:
+    //     - Update the distance to the neighbor
+    //     - Set the predecessor of the neighbor to be the current city
+    //     - Push the neighbor into the priority queue with its updated distance
+    while (!minHeap.empty()) {
+        string curr_city = minHeap.top().second;
+        minHeap.pop();
+
+        for (const auto& neighbor : graph[curr_city]) {
+            string neighbor_city = neighbor.first;
+            double edge_weight = neighbor.second;
+
+            if (dist_vec[curr_city] + edge_weight < dist_vec[neighbor_city]) {
+                dist_vec[neighbor_city] = dist_vec[curr_city] + edge_weight;
+                predecessor_list[neighbor_city] = curr_city;
+                minHeap.push({dist_vec[neighbor_city], neighbor_city});
             }
         }
     }
+
+    // Return the map of predecessors, represents the shortest paths from start_city to all other cities
     return predecessor_list;
 }
+
 
 void printPathVector(vector<string> path_vec) {
     for(unsigned int i = 0; i < path_vec.size(); i++) {
@@ -239,20 +234,108 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
+    cout << "Dijkstra's path:" << endl;
     printPathVector(path_vec);
     return path_vec;
 }
 
+struct compare {
+    bool operator()(const pair<string, double>& l, const pair<string, double>& r) {
+        return l.second > r.second;
+    }
+};
+
+unordered_map<string, string> AStar(
+    unordered_map<string, vector<pair<string, double>>> graph,
+    string start_city, string end_city, unordered_map<string, City> city_map) {
+
+    priority_queue<pair<string, double>, vector<pair<string, double>>, compare> Q;
+    unordered_map<string, bool> closed;
+    unordered_map<string, double> dist_vec;
+    unordered_map<string, string> predecessor_list;
+
+    for (const auto& pair : graph) {
+        dist_vec[pair.first] = INT_MAX;
+        predecessor_list[pair.first] = "";
+        closed[pair.first] = false;
+    }
+
+    dist_vec[start_city] = 0;
+    predecessor_list[start_city] = start_city;
+    Q.push({start_city, 0.0});
+
+    while (!Q.empty()) {
+        string current = Q.top().first;
+        Q.pop();
+        closed[current] = true;
+
+        if (current == end_city) break;
+
+        for (const auto& neighbor : graph[current]) {
+            if (closed[neighbor.first]) continue;
+
+            double newDist = dist_vec[current] + neighbor.second;
+            if (newDist < dist_vec[neighbor.first]) {
+                dist_vec[neighbor.first] = newDist;
+                predecessor_list[neighbor.first] = current;
+                double heuristic = calculateDistance(city_map[neighbor.first].lat, city_map[end_city].lat, city_map[neighbor.first].lng, city_map[end_city].lng);
+                Q.push({neighbor.first, newDist + heuristic});
+            }
+        }
+    }
+
+    return predecessor_list;
+}
+
+
+unordered_map<string, City> map_cities(vector<City> cities){
+    unordered_map<string, City> city_map;
+    for(auto i = cities.begin(); i != cities.end(); i++){
+        city_map[i->name] = *i;
+    }
+    return city_map;
+}
+
+vector<string> AStarPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city, vector<City> cities) {
+    cout << "Running A*..." << endl;
+    unordered_map<string, City> city_map = map_cities(cities);
+    unordered_map<string, string> predecessor_list = AStar(graph, start_city, end_city, city_map);
+    vector<string> path_vec; // 0th index is start city, final index is end_city
+    path_vec.push_back(end_city);
+    while(predecessor_list[end_city] != start_city) {
+        path_vec.push_back(predecessor_list[end_city]);
+        end_city = predecessor_list[end_city];
+    }
+    path_vec.push_back(start_city);
+    reverse(path_vec.begin(), path_vec.end());
+    cout << "A* path:" << endl;
+    printPathVector(path_vec);
+    return path_vec;
+}
+
+
 int main() {
-    try {
-        vector<City> cities = readCitiesFromFile("cities.csv");
-        auto graph = createCityGraph(cities);
-        // printGraph(graph);
-        // outputGraphToFile(graph, "small_adjacency_list.csv");
-        dijkstraPathFinding(graph, "Los Angeles CA", "Phoenix AZ");
-    } catch (const std::exception& e) {
-        cerr << "Exception caught in main: " << e.what() << endl;
-        return 1;
+    vector<City> cities = readCitiesFromFile("cities.csv");
+    auto graph = createCityGraph(cities);
+    // outputGraphToFile(graph, "small_adjacency_list.csv");
+
+    string startCity, endCity;
+
+    while (true) {
+        cout << "Enter start city (e.g. New York NY) (or QUIT to exit): ";
+        getline(cin, startCity);
+        if (startCity == "QUIT") break;
+
+        cout << "Enter end city (e.g. Los Angeles CA): "; 
+        getline(cin, endCity);
+
+        try {
+            cout << "Calculating path..." << endl;
+            dijkstraPathFinding(graph, startCity, endCity);
+            AStarPathFinding(graph, startCity, endCity, cities);
+        } catch (exception& e) {
+            cout << "Error finding path: " << e.what() << endl;
+        }
     }
 
     return 0;
