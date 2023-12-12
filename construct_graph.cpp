@@ -8,13 +8,14 @@
 #include <stdlib.h>
 #include <unordered_map>
 #include <queue>
-#include <time.h>
+#include <chrono>
 
 #define EARTH_RADIUS_KM 6371.0
 #define DISTANCE_THRESHOLD_KM 100.0
 #define CITY_LIMIT 100000
 
 using namespace std;
+using namespace std::chrono;
 
 struct City {
     string name;
@@ -225,7 +226,6 @@ void printPathVector(vector<string> path_vec) {
 }
 
 vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city) {
-    cout << "Running Dijkstra's..." << endl;
     unordered_map<string, string> predecessor_list = dijkstra(graph, start_city);
     vector<string> path_vec; // 0th index is start city, final index is end_city
     path_vec.push_back(end_city);
@@ -235,7 +235,7 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
-    cout << "Dijkstra's path:" << endl;
+    cout << "Dijkstra's path: ";
     printPathVector(path_vec);
     return path_vec;
 }
@@ -298,7 +298,6 @@ unordered_map<string, City> map_cities(vector<City> cities){
 }
 
 vector<string> AStarPathFinding(unordered_map<string, vector<pair<string, double>>> graph, string start_city, string end_city, vector<City> cities) {
-    cout << "Running A*..." << endl;
     unordered_map<string, City> city_map = map_cities(cities);
     unordered_map<string, string> predecessor_list = AStar(graph, start_city, end_city, city_map);
     vector<string> path_vec; // 0th index is start city, final index is end_city
@@ -309,7 +308,7 @@ vector<string> AStarPathFinding(unordered_map<string, vector<pair<string, double
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
-    cout << "A* path:" << endl;
+    cout << "A* path: ";
     printPathVector(path_vec);
     return path_vec;
 }
@@ -330,20 +329,23 @@ int main() {
         cout << "Enter end city (e.g. Los Angeles CA): "; 
         getline(cin, endCity);
 
+        cout << endl;
+
         try {
-            cout << "Calculating path..." << endl;
-            clock_t start, end;
-            double cpu_time_dijkstra, cpu_time_astar;
-            start = clock();
+            cout << "Calculating path using Dijkstra's algorithm..." << endl;
+            auto start = high_resolution_clock::now();
             dijkstraPathFinding(graph, startCity, endCity);
-            end = clock();
-            cpu_time_dijkstra = ((double) (end - start)) / CLOCKS_PER_SEC;
-            start = clock();
+            auto stop = high_resolution_clock::now();
+            auto algo_duration = duration<double>(stop - start).count();
+            cout << "Time taken by Dijkstra's algorithm: " << algo_duration << " seconds" << endl << endl;
+
+            cout << "Calculating path using A* algorithm..." << endl;
+            start = high_resolution_clock::now();
             AStarPathFinding(graph, startCity, endCity, cities);
-            end = clock();
-            cpu_time_astar = ((double) (end - start)) / CLOCKS_PER_SEC;
-            cout << endl << "Dijkstra took " << cpu_time_dijkstra << " seconds" << endl;
-            cout << "A* took " << cpu_time_astar << " seconds" << endl;
+            stop = high_resolution_clock::now();
+            algo_duration = duration<double>(stop - start).count();
+            cout << "Time taken by A* algorithm: " << algo_duration << " seconds" << endl;
+
         } catch (exception& e) {
             cout << "Error finding path: " << e.what() << endl;
         }
