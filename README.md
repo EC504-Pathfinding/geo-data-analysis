@@ -34,7 +34,6 @@ Output files containing the generated routes are saved to the `output/` director
 - `src/`: Source code for the project  
 - `input/`: Input data files
 - `output/`: Output files with generated routes
-- `docs/`: Documentation including project report 
 - `makefile`: Compilation scripts
 
 ## Dependencies  
