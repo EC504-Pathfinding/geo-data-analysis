@@ -44,4 +44,4 @@ Output files containing the generated routes are saved to the `output/` director
 
 ## References  
 
-See the project report for a list of references and data sources.
+See the [final report](https://github.com/EC504-Pathfinding/geo-data-analysis/blob/44f4b1901fc6274c22e8d81de90fc620696de9dc/EC%20504%20Group%202%20Final%20Report.pdf) for a list of references and data sources.
