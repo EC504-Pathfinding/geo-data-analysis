@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <queue>
 #include <chrono>
+#include <cstdlib>
 
 #define EARTH_RADIUS_KM 6371.0
 #define DISTANCE_THRESHOLD_KM 100.0
@@ -60,11 +61,11 @@ double calculateDistance(double lat1, double lng1, double lat2, double lng2) {
 
 void printGraph(const unordered_map<string, vector<pair<string, double>>>& graph) {
     for (const auto& entry : graph) {
-        cout << entry.first << ": ";
+        std::cout << entry.first << ": ";
         for (const auto& neighbor : entry.second) {
-            cout << "(" << neighbor.first << ", " << neighbor.second << " km) ";
+            std::cout << "(" << neighbor.first << ", " << neighbor.second << " km) ";
         }
-        cout << endl;
+        std::cout << endl;
     }
 }
 
@@ -89,7 +90,7 @@ void outputGraphToFile(const unordered_map<string, vector<pair<string, double>>>
     }
 
     outputFile.close();
-    cout << "Graph data written to " << filename << endl;
+    std::cout << "Graph data written to " << filename << endl;
 }
 
 vector<City> readCitiesFromFile(const string& filename) {
@@ -103,7 +104,7 @@ vector<City> readCitiesFromFile(const string& filename) {
     }
 
     getline(file, line); // Skip the first line (header)
-    cout << "Creating cities vector..." << endl;
+    std::cout << "Creating cities vector..." << endl;
 
     while (getline(file, line)) {
         stringstream ss(line);
@@ -130,7 +131,7 @@ vector<City> readCitiesFromFile(const string& filename) {
             City newCity = {city, state, stod(lat), stod(lng)};
             cities.push_back(newCity);
         } catch (const std::invalid_argument& e) {
-            cerr << "Invalid data for city: " << city << ". Skipping." << endl;
+           // cerr << "Invalid data for city: " << city << ". Skipping." << endl;
         }
 
         // Use only first CITY_LIMIT cities in CSV for testing
@@ -217,10 +218,10 @@ unordered_map<string, string> dijkstra(unordered_map<string, vector<pair<string,
 void printPathVector(vector<string> path_vec) {
     for(unsigned int i = 0; i < path_vec.size(); i++) {
         if(i == path_vec.size() - 1) {
-            cout << path_vec[i] << endl;
+            std::cout << path_vec[i] << endl;
             break;
         } else
-            cout << path_vec[i] << ", ";
+            std::cout << path_vec[i] << ", ";
     }
     return;
 }
@@ -235,7 +236,7 @@ vector<string> dijkstraPathFinding(unordered_map<string, vector<pair<string, dou
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
-    cout << "Dijkstra's path: ";
+    std::cout << "Dijkstra's path: ";
     printPathVector(path_vec);
     return path_vec;
 }
@@ -308,48 +309,145 @@ vector<string> AStarPathFinding(unordered_map<string, vector<pair<string, double
     }
     path_vec.push_back(start_city);
     reverse(path_vec.begin(), path_vec.end());
-    cout << "A* path: ";
+    std::cout << "A* path: ";
     printPathVector(path_vec);
     return path_vec;
 }
 
+unordered_map<string, vector<pair<string, double>>> createGraphFromInputFile(const string &filename) {
+    ifstream file(filename);
+    string line;
+    unordered_map<string, vector<pair<string, double>>> graph;
+    if (!file.is_open()) {
+        cerr << "Error opening file" << endl;
+        throw runtime_error("File opening failed");
+    }
+    getline(file, line); // Skip the first line (header)
+    std::cout << "Creating cities graph from input file..." << endl;
+    int cnt = 0;
+    int done = 0;
+    while (getline(file, line)) {
+        cnt++;
+        if(cnt % 600000 == 0) {
+            done+=10;
+            std::cout << done << " percent done with creating graph from input" << endl;
+        }
+        stringstream ss(line);
+        string from, to, dist, token;
+        int column = 0;
+        while (getline(ss, token, ',')) {
+            column++;
+            if (column == 1) {
+                from = removeQuotesAndTrim(token);
+            } else if (column == 2) {
+                to = removeQuotesAndTrim(token);
+            } else if (column == 3) {
+                dist = removeQuotesAndTrim(token);
+            }
+        }
+        try {
+            graph[from].push_back(make_pair(to, stod(dist)));
+        } catch (const std::invalid_argument& e) {
+            cerr << "Invalid data for cities: " << from << ", " << to << ". Skipping." << endl;
+        }
+    }
+    std::cout << "Finished creating graph from input!" << endl << endl;
+    file.close();
+    return graph;
+}
 
 int main() {
-    vector<City> cities = readCitiesFromFile("cities.csv");
-    auto graph = createCityGraph(cities);
-    // outputGraphToFile(graph, "small_adjacency_list.csv");
-
+    vector<City> cities = readCitiesFromFile("input/cities.csv");
+    // auto graph = createCityGraph(cities);
+    // outputGraphToFile(graph, "full_adjacency_list.csv");
+    auto graph = createGraphFromInputFile("input/full_adjacency_list.csv");
     string startCity, endCity;
 
+    std::cout << "Pathfinding Application - Returns the path between two cities and the time it took to calculate the result for each algorithm..." << endl;
     while (true) {
-        cout << "Enter start city (e.g. New York NY) (or QUIT to exit): ";
+        std::cout << "Enter start city (e.g. New York NY) (or QUIT to exit): ";
         getline(cin, startCity);
         if (startCity == "QUIT") break;
 
-        cout << "Enter end city (e.g. Los Angeles CA): "; 
+        std::cout << "Enter end city (e.g. Los Angeles CA): "; 
         getline(cin, endCity);
 
-        cout << endl;
+        std::cout << endl;
 
         try {
-            cout << "Calculating path using Dijkstra's algorithm..." << endl;
+            struct output_information {
+                string start_city;
+                string end_city;
+                string dijkstra_path;
+                string astar_path;
+                double dijkstra_duration;
+                double astar_duration;
+            };
+            struct output_information outinfo;
+            outinfo.start_city = startCity;
+            outinfo.end_city = endCity;
+
+            std::cout << "Calculating path using Dijkstra's algorithm..." << endl;
             auto start = high_resolution_clock::now();
-            dijkstraPathFinding(graph, startCity, endCity);
+            auto dijksta_res = dijkstraPathFinding(graph, startCity, endCity);
             auto stop = high_resolution_clock::now();
             auto algo_duration = duration<double>(stop - start).count();
-            cout << "Time taken by Dijkstra's algorithm: " << algo_duration << " seconds" << endl << endl;
+            std::cout << "Time taken by Dijkstra's algorithm: " << algo_duration << " seconds" << endl << endl;
+            outinfo.dijkstra_duration = algo_duration;
 
-            cout << "Calculating path using A* algorithm..." << endl;
+            std::cout << "Calculating path using A* algorithm..." << endl;
             start = high_resolution_clock::now();
-            AStarPathFinding(graph, startCity, endCity, cities);
+            auto astar_res = AStarPathFinding(graph, startCity, endCity, cities);
             stop = high_resolution_clock::now();
             algo_duration = duration<double>(stop - start).count();
-            cout << "Time taken by A* algorithm: " << algo_duration << " seconds" << endl;
+            std::cout << "Time taken by A* algorithm: " << algo_duration << " seconds" << endl;
+            outinfo.astar_duration = algo_duration;
+
+            // open new file and write output information to it, overwriting if it has been seen before
+            outinfo.dijkstra_path = "";
+            outinfo.astar_path = "";
+            for(unsigned long i = 0; i < dijksta_res.size(); i++) {
+                if(i != dijksta_res.size() -1) {
+                    outinfo.dijkstra_path+=dijksta_res[i];
+                    outinfo.dijkstra_path+=" ";
+                } else {
+                    outinfo.dijkstra_path+=dijksta_res[i];
+                }
+            }
+            for(unsigned long i = 0; i < astar_res.size(); i++) {
+                if(i != dijksta_res.size() -1) {
+                    outinfo.astar_path+=astar_res[i];
+                    outinfo.astar_path+=" ";
+                } else {
+                    outinfo.astar_path+=astar_res[i];
+                }
+            }
+            // open file and write 
+            ofstream outputFile("output/" + startCity + " " + endCity + ".txt");
+            if (!outputFile.is_open()) {
+                cerr << "Error opening output file" << endl;
+                return 0;
+            }
+
+            // Output header line
+            outputFile << "Results when running " << outinfo.start_city << " to " << outinfo.end_city << endl;
+            outputFile << "Dijkstra: " << outinfo.dijkstra_duration << " seconds"<< endl;
+            outputFile << "Dijkstra Path: " << outinfo.dijkstra_path << endl;
+            outputFile << "A*: " << outinfo.astar_duration << " seconds"<< endl;
+            outputFile << "A* Path: " << outinfo.astar_path << endl;
+            if(outinfo.dijkstra_path == outinfo.astar_path) {
+                outputFile << "Dijkstra and Astar gave the same resulting path" << endl;
+            }
+            else {
+                outputFile << "Dijkstra and Astar did not give the same resulting path" << endl;
+            }
+            outputFile.close();
+            std::cout << "Results data written to " << "output/" + startCity + " " + endCity + ".txt" << endl << endl;;
 
         } catch (exception& e) {
-            cout << "Error finding path: " << e.what() << endl;
+            std::cout << "Error finding path: " << e.what() << endl;
         }
     }
-
+    
     return 0;
 }

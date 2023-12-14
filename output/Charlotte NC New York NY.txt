@@ -1,0 +1,6 @@
+Results when running Charlotte NC to New York NY
+Dijkstra: 12.4464 seconds
+Dijkstra Path: Charlotte NC Mocksville NC Stuart VA Salem VA Hot Springs VA Whitmer WV Jennings MD Oakland PA Starrucca PA Washington Heights NY Woodbury NY New York NY
+A*: 8.05142 seconds
+A* Path: Charlotte NC Mocksville NC Stuart VA Salem VA Hot Springs VA Whitmer WV Jennings MD Oakland PA Starrucca PA Washington Heights NY Woodbury NY New York NY
+Dijkstra and Astar gave the same resulting path

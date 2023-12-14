@@ -1,0 +1,6 @@
+Results when running Augusta ME to Concord NH
+Dijkstra: 12.391 seconds
+Dijkstra Path: Augusta ME Steep Falls ME Concord NH
+A*: 0.916419 seconds
+A* Path: Augusta ME Steep Falls ME Concord NH
+Dijkstra and Astar gave the same resulting path

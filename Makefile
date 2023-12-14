@@ -10,7 +10,7 @@ CXXFLAGS = -Wall -Wextra -std=c++11
 TARGET = GeoDataAnalysis
 
 # Source files
-SOURCES = construct_graph.cpp
+SOURCES = src/geo_data_analysis.cpp
 
 # Build the program
 all: $(TARGET)

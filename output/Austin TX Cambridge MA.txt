@@ -1,0 +1,6 @@
+Results when running Austin TX to Cambridge MA
+Dijkstra: 12.8121 seconds
+Dijkstra Path: Austin TX Buckholts TX Kosse TX Fairfield TX Chandler TX Gilmer TX Douglassville TX Oakhaven AR Donaldson AR College Station AR Griffithville AR Weiner AR Cardwell MO Wardell MO Bardwell KY Brookport IL Sturgis KY Tennyson IN Livonia IN Crothersville IN St. Leon IN Oakwood OH Arcadia OH New London OH Gloria Glens Park OH Atwater OH Oakland PA Pine Hill NY Housatonic MA Easthampton MA Marlborough MA Cambridge MA
+A*: 13.8777 seconds
+A* Path: Austin TX Buckholts TX Kosse TX Fairfield TX Chandler TX Gilmer TX Douglassville TX Oakhaven AR Donaldson AR College Station AR Griffithville AR Weiner AR Cardwell MO Wardell MO Bardwell KY Brookport IL Sturgis KY Tennyson IN Livonia IN Crothersville IN St. Leon IN Oakwood OH Arcadia OH New London OH Gloria Glens Park OH Atwater OH Oakland PA Pine Hill NY Housatonic MA Easthampton MA Marlborough MA Cambridge MA
+Dijkstra and Astar gave the same resulting path

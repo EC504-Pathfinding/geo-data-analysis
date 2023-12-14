@@ -1,0 +1,6 @@
+Results when running Lewis CO to Rico CO
+Dijkstra: 13.0116 seconds
+Dijkstra Path: Lewis CO Rico CO
+A*: 0.936492 seconds
+A* Path: Lewis CO Rico CO
+Dijkstra and Astar gave the same resulting path
