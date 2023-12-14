@@ -436,10 +436,10 @@ int main() {
             outputFile << "A*: " << outinfo.astar_duration << " seconds"<< endl;
             outputFile << "A* Path: " << outinfo.astar_path << endl;
             if(outinfo.dijkstra_path == outinfo.astar_path) {
-                outputFile << "Dijkstra and Astar gave the same resulting path" << endl;
+                outputFile << "Dijkstra's and A* gave the same resulting path" << endl;
             }
             else {
-                outputFile << "Dijkstra and Astar did not give the same resulting path" << endl;
+                outputFile << "Dijkstra's and A* did not give the same resulting path" << endl;
             }
             outputFile.close();
             std::cout << "Results data written to " << "output/" + startCity + " " + endCity + ".txt" << endl << endl;;
